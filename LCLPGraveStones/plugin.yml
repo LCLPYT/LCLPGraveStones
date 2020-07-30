@@ -1,0 +1,5 @@
+main: work.lclpnet.gravestones.LCLPGraveStones
+name: LCLPGraveStones
+version: 1.0
+author: LCLP
+api-version: 1.16
