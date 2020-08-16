@@ -15,6 +15,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockExplodeEvent;
+import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -98,9 +99,15 @@ public class EventListener implements Listener{
 	@EventHandler
 	public void onBlockExplode(BlockExplodeEvent e) {
 		List<Block> remove = new ArrayList<>();
-		for(Block b : e.blockList()) {
-			if(isGravestone(b)) remove.add(b);
-		}
+		for(Block b : e.blockList()) if(isGravestone(b)) remove.add(b);
+		e.blockList().removeAll(remove);
+	}
+	
+	@EventHandler
+	public void onEntityExplode(EntityExplodeEvent e) {
+		List<Block> remove = new ArrayList<>();
+		for(Block b : e.blockList()) if(isGravestone(b)) remove.add(b);
+		e.blockList().removeAll(remove);
 	}
 	
 	private boolean isGravestone(Block b) {
